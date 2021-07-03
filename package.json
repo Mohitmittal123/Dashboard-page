@@ -1,6 +1,6 @@
 {
   "name": "react-dashboard",
-  "version": "1.0.0",
+  "version": "7.6.0",
   "engines":{
     "node": "14.8.0"
   },
