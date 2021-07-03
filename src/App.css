@@ -1,38 +1,262 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul{
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li{
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body{
+  background-color: #eee;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.side-menu{
+  position: fixed;
+   background-color: black;
+   width: 300px;
+   height: 100%;
+   box-sizing: border-box;
+   padding: 30px 20px;
+   transition: width .2s ease-in;
+
+}
+ .side-menu.inactive{
+   width: 80px;
+   
+ }
+ 
+
+
+
+.side-menu .top-section{
+   position: relative; /*we can freely move it toggle */
+}
+.side-menu .top-section .logo{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.side-menu .top-section .logo img{
+  max-width: 100%;
+  max-height: 100%;
 }
+
+.side-menu .top-section .toggle-menu-btn{
+  color: #333;
+   font-size: 20px;
+   position: absolute;
+   top: 50%; /*now it can move freely*/
+    right: 0;/*now facing oppose*/
+     transform: translateY(-50%);
+     cursor: pointer;
+     
+}
+
+.side-menu.inactive .top-section .toggle-menu-btn{
+  right: -50px;
+}
+
+
+.side-menu .search-container{
+  color: #fff;
+  position: relative;
+}
+
+.side-menu .search-container .search-btn{
+      width: 40px;
+       
+    position: absolute;/*it will appear on search box first so that we can move it*/
+     background-color: transparent;
+      border: 0;
+       font-size: 20px;
+        color: #666;
+        top: 50%;/*goes a little bit down*/
+        transform: translateY(-50%);/*center*/
+      
+}
+
+
+
+.side-menu .search-container input[type=text]{
+        border: 0;
+        outline: none;
+        height: 30px;
+        background: #333;
+         border-radius: 5px;
+         margin: 20px 0;
+         display: block;
+         width: 100%;
+         box-sizing: border-box;
+         padding-left:40px;
+         color: #666;
+
+}
+
+.side-menu .main-menu .menu-item{
+       color: #333;
+       text-decoration: none;/*with anchor tag it comes with a style*/
+       font-size: 15px;
+       /*you can not change the inline to block you just change the dispaly of that element*/
+       /*to apply width and height  and padding dimention we conert inline to block*/
+       display: block;
+       font-weight: 600;
+       cursor: pointer;
+
+
+}
+.side-menu .main-menu .menu-item.active{
+  background: #666;
+  border-radius: 5px;
+  color: #fff;
+
+}
+
+.side-menu .main-menu{
+  margin: 10px 0;
+  
+}
+
+.side-menu .main-menu .menu-item .menu-icon{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  
+  font-size: 20px;
+  line-height: 40px;
+   text-align: center;/*works on inline elements*/
+   color: #333;
+
+}
+.side-menu .main-menu .menu-item span{
+   position: absolute;
+   display: inline-block;
+   line-height: 40px;
+   opacity: 1;
+   transition: opacity .2s ease-in;
+}
+
+.side-menu.inactive .main-menu .menu-item span{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+
+
+.side-menu .main-menu .sub-menu{
+    color: #333;
+    margin-left: 20px;
+    border-left: 1px solid #333;
+    box-sizing: border-box;
+    padding-left: 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s ease-in;
+}
+
+
+.side-menu .main-menu .sub-menu.active {
+      max-height: 200px;
+}
+.side-menu .main-menu .sub-menu a{
+      display: block;
+     margin: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #333;
+      box-sizing: border-box;
+  padding: 5px ;
+
+}
+.side-menu .main-menu .sub-menu a.active{
+  background: #666;
+  display: block;
+  
+  border-radius: 5px;
+  color: #fff;
+}
+
+.side-menu-footer{
+     width: 100%;
+     background: #333;
+     position: absolute;/*it will adjust according to parent component which is side menu*/
+     bottom: 0;
+     left: 0;
+     padding: 20px 20px ;
+     box-sizing: border-box;
+
+}
+.side-menu-footer .avatar{
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      border-radius: 50%;/*to make it circular*/
+      display: inline-block;
+}
+.side-menu-footer .avatar img{
+  max-width: 100%;
+  background: #333;
+}
+
+.side-menu-footer .user-info{
+   display: inline-block;
+   margin: 0 10px;
+   cursor: pointer;
+   position: absolute;
+   opacity: 1;
+    transition: opacity .2s ease-in;/*does nt work with display thats why opacity*/
+    color: whitesmoke;
+    
+}
+
+.side-menu.inactive .side-menu-footer .user-info{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+
+    .side-menu-footer .user-info h5{
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .side-menu-footer .user-info p{
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+
+
+
+.divider{
+  
+      width: 100%;
+      height: 1px;
+      border-radius: 1px;
+      background: #333;
+     
+}
+
+.container{
+  margin-left: 300px;
+  transition: margin-left .2s ease-in;
+  padding: 50px;
+}
+
+ .container.inactive{
+  margin-left: 80px;
+} 
+
